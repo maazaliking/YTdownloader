@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold text-center mb-8 text-red-600">YouTube Video Downloader</h1>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex space-x-4">
+                    <input type="text" id="url-input" 
+                           class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500" 
+                           placeholder="Paste YouTube URL here...">
+                    <button onclick="getVideoInfo()" 
+                            class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-200">
+                        Get Info
+                    </button>
+                </div>
+            </div>
+
+            <div id="video-info" class="hidden bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex items-start space-x-4">
+                    <img id="thumbnail" class="w-48 rounded-lg" src="" alt="Video thumbnail">
+                    <div class="flex-1">
+                        <h2 id="video-title" class="text-xl font-semibold mb-2"></h2>
+                        <p id="video-author" class="text-gray-600 mb-2"></p>
+                        <p id="video-duration" class="text-gray-600 mb-4"></p>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2">Select Quality:</label>
+                            <select id="quality-select" 
+                                    class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-500">
+                            </select>
+                        </div>
+                        <button onclick="downloadVideo()" 
+                                class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-200">
+                            Download Video
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="download-progress" class="hidden bg-white rounded-lg shadow-lg p-6">
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-gray-700">Downloading...</span>
+                        <span id="progress-text" class="text-gray-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-green-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
